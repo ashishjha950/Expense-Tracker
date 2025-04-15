@@ -1,8 +1,9 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
-export default Connection = async (MONGO_URL) => {
+const Connection = async () => {
     try {
-        await mongoose.connect(MONGO_URL, {
+        const mongoUrl = process.env.MONGO_URL;
+        await mongoose.connect(mongoUrl, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
@@ -11,3 +12,5 @@ export default Connection = async (MONGO_URL) => {
         console.error("MongoDB connection error:", error);
     }
 }
+
+export default Connection;
